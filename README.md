@@ -1,4 +1,6 @@
-## 徹底攻略 ディープラーニングE資格エンジニア問題集
+# Repository for e-qualification studies
+## Description
+This repository deals with source code regarding "[徹底攻略 ディープラーニングE資格エンジニア問題集](https://book.impress.co.jp/books/1118101176)". I will comment study record to .ipynb files.
 
-[徹底攻略 ディープラーニングE資格エンジニア問題集](https://book.impress.co.jp/books/1118101176)の問題文中に登場するソースコードのリポジトリです。
-誤記に関しては、[こちら](https://book.impress.co.jp/books/1118101176)で管理しています。
+## Other
+information link regarding misprint of "[徹底攻略 ディープラーニングE資格エンジニア問題集](https://book.impress.co.jp/books/1118101176)" is [this](https://book.impress.co.jp/books/1118101176)
