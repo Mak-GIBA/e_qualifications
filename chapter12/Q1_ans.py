@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class SGD:
     def __init__(self, lr=0.01):
         self.lr = lr
@@ -22,7 +23,7 @@ class Momentum:
                 self.v[key] = np.zeros_like(val)
 
         for key in params.keys():
-            self.v[key] = self.momentum*self.v[key] - self.lr*grads[key]
+            self.v[key] = self.momentum * self.v[key] - self.lr * grads[key]
             params[key] += self.v[key]
 
 
@@ -41,8 +42,8 @@ class Nesterov:
         for key in params.keys():
             params[key] += self.momentum * self.momentum * self.v[key]
             params[key] -= (1 + self.momentum) * self.lr * grads[key]
-            self.v[key] *= self.momentum   
-            self.v[key] -= self.lr * grads[key]            
+            self.v[key] *= self.momentum
+            self.v[key] -= self.lr * grads[key]
 
 
 class AdaGrad:
@@ -62,7 +63,7 @@ class AdaGrad:
 
 
 class RMSProp:
-    def __init__(self, lr=0.01, decay_rate = 0.99):
+    def __init__(self, lr=0.01, decay_rate=0.99):
         self.lr = lr
         self.decay_rate = decay_rate
         self.h = None
@@ -99,8 +100,8 @@ class Adam:
         self.iter += 1
 
         for key in params.keys():
-            self.m[key] = self.rho1*self.m[key] + (1-self.rho1)*grads[key]
-            self.v[key] = self.rho2*self.v[key] + (1-self.rho2)*(grads[key]**2)
+            self.m[key] = self.rho1 * self.m[key] + (1 - self.rho1) * grads[key]
+            self.v[key] = self.rho2 * self.v[key] + (1 - self.rho2) * (grads[key] ** 2)
 
             m = self.m[key] / (1 - self.rho1**self.iter)
             v = self.v[key] / (1 - self.rho2**self.iter)
@@ -108,22 +109,22 @@ class Adam:
             params[key] -= self.lr * m / (np.sqrt(v) + self.epsilon)
 
 
-if __name__=="__main__":
-    
+if __name__ == "__main__":
     for CLS in [SGD, Momentum, Nesterov, AdaGrad, RMSProp, Adam]:
         print(CLS)
-        
-        cls = CLS()  
-        
-        params = {"affine1":np.random.randn(6).reshape(2,3),
-                      "affine2":np.random.randn(6).reshape(2,3)
-                     }
-        grads = {"affine1":np.random.randn(6).reshape(2,3),
-                    "affine2":np.random.randn(6).reshape(2,3)
-                   }
-        
+
+        cls = CLS()
+
+        params = {
+            "affine1": np.random.randn(6).reshape(2, 3),
+            "affine2": np.random.randn(6).reshape(2, 3),
+        }
+        grads = {
+            "affine1": np.random.randn(6).reshape(2, 3),
+            "affine2": np.random.randn(6).reshape(2, 3),
+        }
+
         print("params\n", params)
         print("grads\n", grads)
         cls.update(params, grads)
         print("params after\n", params)
-        
